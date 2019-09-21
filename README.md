@@ -17,10 +17,10 @@ We added kernel module to simulate some virtualization features:
 
 ## How to build a custom kernel module
 
-You'll need the usual toolchain for kernel compilation, which on Ubuntu is generally fulfilled by `apt-get install build-essential libssl-dev`. Then, the following script can be run.
+The following line can be run on the shell:
 
 ```console
-$ wget -O - https://raw.githubusercontent.com/ablce9/kernel-tools/master/rules.mk | bash -
+$ wget -O - https://raw.githubusercontent.com/ablce9/kernel-tools/master/ready_for_dkms.sh | bash -
 ```
 
 Then you can make your module as usual by configuring `KDIR=/lib/modules/$(uname -r)/build/`
