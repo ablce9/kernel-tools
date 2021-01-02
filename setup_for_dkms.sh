@@ -8,8 +8,8 @@ LOCAL="${RELEASE#*-}"
 
 # Get kernel sources
 mkdir -p /usr/src;
-wget -O - "/usr/src/linux-${UPSTREAM}.tar.xz" "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${UPSTREAM}.tar.xz" |
-    tar xf "/usr/src/linux-${UPSTREAM}.tar.xz" -C /usr/src/
+wget -O "/usr/src/linux-${UPSTREAM}.tar.xz" "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${UPSTREAM}.tar.xz"
+tar xf "/usr/src/linux-${UPSTREAM}.tar.xz" -C /usr/src/ && rm "/usr/src/linux-${UPSTREAM}.tar.xz"
 ln -fns "/usr/src/linux-${UPSTREAM}" /usr/src/linux
 ln -fns "/usr/src/linux-${UPSTREAM}" /lib/modules/${RELEASE}/build
 
