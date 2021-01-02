@@ -20,7 +20,7 @@ We added kernel module to simulate some virtualization features:
 The following line can be run on the shell:
 
 ```console
-$ wget -O - https://raw.githubusercontent.com/ablce9/kernel-tools/master/ready_for_dkms.sh | bash -
+$ wget -O - https://raw.githubusercontent.com/ablce9/kernel-tools/master/setup_for_dkms.sh | bash -
 ```
 
 Then you can make your module as usual by configuring `KDIR=/lib/modules/$(uname -r)/build/`
@@ -28,16 +28,15 @@ Then you can make your module as usual by configuring `KDIR=/lib/modules/$(uname
 Alternatively, you can now build a DKMS-based kernel module, for instance: `apt-get install zfsutils-linux`
 
 Here's an example of building [WireGuard](https://www.wireguard.com/).
+
 ```console
-$ wget -O - https://raw.githubusercontent.com/ablce9/kernel-tools/master/ready_for_dkms.sh | bash - # Get ready for $KDIR
-...
-$ sudo apt-get install libmnl-dev libelf-dev build-essential pkg-config # Essential for WireGuard.
-...
-$ wget https://git.zx2c4.com/WireGuard/snapshot/WireGuard-0.0.20190913.tar.xz | tar xf -C /opt
-...
-$ KDIR=/lib/modules/$(uname -r)/build/ make -j4 debug && sudo make install
-...
-$ modinfo wireguard # Verify wireguard is installed.
+wget -O - https://raw.githubusercontent.com/ablce9/kernel-tools/master/setup_for_dkms.sh | bash - # Get ready for $KDIR
+sudo apt-get install libmnl-dev libelf-dev build-essential pkg-config # Essential for WireGuard.
+git clone https://git.zx2c4.com/wireguard-linux-compat
+git checkout v1.0.20201221
+cd wireguard-linux-compat/src
+KDIR=/lib/modules/$(uname -r)/build/ make -j4 debug && sudo make install
+modinfo wireguard # Verify wireguard is installed.
 ```
 
 ## Kernels
